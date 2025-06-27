@@ -1,6 +1,10 @@
 name: Run Postman API Tests (GoRest)
 
-on: workflow_dispatch
+on: 
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   run-postman-tests:
