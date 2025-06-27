@@ -1,10 +1,6 @@
 name: Run Postman API Tests (GoRest)
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: workflow_dispatch
 
 jobs:
   run-postman-tests:
@@ -16,7 +12,7 @@ jobs:
 
     - name: Create dir
       run: |
-       mkdir TestArtifact
+        mkdir TestArtifact
 
     - name: Install Node.js
       uses: actions/setup-node@v3
@@ -24,7 +20,10 @@ jobs:
         node-version: '16'
 
     - name: Install Newman (Postman CLI)
-      run: npm install -g newman
+      run: |
+        npm install -g newman
+        npm install -g newman-reporter-slackreporter
+        npm install -g newman-reporter-htmlextra
 
     - name: Run GoRest Postman Tests
       run: |
